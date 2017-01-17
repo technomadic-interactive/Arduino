@@ -167,7 +167,7 @@ String parseCSV(String csv, int field) {
 void sendMsg() {
   String res, atcomm;
   res = "id=arduino";
-  sendATCommandWithResponse("AT+QHTTPURL=40,29", "199.195.116.177/alexaHack/make_calls.php");
+  sendATCommandWithResponse("AT+QHTTPURL=47,29", "199.195.116.177/alexaHack/make_calls.php");
   delay(3000);
   sendATCommand("AT+QIGETERROR", 100);
   atcomm = "AT+QHTTPPOST=";
