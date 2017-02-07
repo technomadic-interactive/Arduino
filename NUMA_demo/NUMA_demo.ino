@@ -1,4 +1,4 @@
-//Bloque de librerias#include <MAX17043.h>
+ //Bloque de librerias#include <MAX17043.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include "CurieIMU.h"
@@ -46,6 +46,7 @@ void setup() {
 void loop() {
   Serial.println("Todo bien");
   delay(4000);
+  //sendMsg();
 }
 
 
@@ -167,7 +168,7 @@ String parseCSV(String csv, int field) {
 void sendMsg() {
   String res, atcomm;
   res = "id=arduino";
-  sendATCommandWithResponse("AT+QHTTPURL=47,29", "199.195.116.177/alexaHack/make_calls.php");
+  sendATCommandWithResponse("AT+QHTTPURL=47,29", "http://199.195.116.177/alexaHack/make_calls.php");
   delay(3000);
   sendATCommand("AT+QIGETERROR", 100);
   atcomm = "AT+QHTTPPOST=";
@@ -209,22 +210,22 @@ static void eventCallback(void)
   if (CurieIMU.getInterruptStatus(CURIE_IMU_SHOCK)) {
     if (CurieIMU.shockDetected(X_AXIS, POSITIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
     if (CurieIMU.shockDetected(X_AXIS, NEGATIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
     if (CurieIMU.shockDetected(Y_AXIS, POSITIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
     if (CurieIMU.shockDetected(Y_AXIS, NEGATIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
     if (CurieIMU.shockDetected(Z_AXIS, POSITIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
     if (CurieIMU.shockDetected(Z_AXIS, NEGATIVE))
       Serial.println("Caida");
-      SendMsg();
+      sendMsg();
   }
 }
 
